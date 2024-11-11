@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .column {
+            float: left;
+            width: 33.33%;
+            padding: 5px;
+        }
+        /* Clear floats after image containers */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            color: black;
+        }
+
+        .bottom-left {
+            position: relative;
+            bottom: 8px;
+            left: 16px;
+        }
+
+        .top-left {
+            position: absolute;
+            top: 8px;
+            left: 16px;
+        }
+
+        .top-right {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+        }
+
+        .bottom-right {
+            position: relative;
+            bottom: 90px;
+            right: -180px;
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+
+
+
+<div class="container">
+    <h1> Resources </h1>
+    <div class="row">
+        <div class="column">
+            <img id="catpic" src="/images/stone.png" alt="Stone" width="200" height="150">
+            <div id="totalCounter" class="bottom-right">0 Stones</div>
+        </div>
+        <div class="column">
+            <img id="catpic2" src="/images/wood.jpg" alt="Wood" width="200" height="150">
+            <div id="totalCounter2" class="bottom-right">0 Wood</div>
+        </div>
+        <div class="column">
+            <img id="wheat_click" src="/images/wheat.png" alt="Wheat" width="200" height="150">
+            <div id="totalCounter8" class="bottom-right">0 Wheat</div>
+        </div>
+    </div>
+    <h1> Automated Gathering </h1>
+    <div class="row">
+        <div class="column">
+        <br> <img id="stone_mine" src="/images/stone.png" alt="Stone" width="100" height="75">
+            <div id="totalCounter5" class="bottom-right">Click image to upgrade</div>
+        </div>
+        <div class="column">
+            <br> <img id="wood_camp" src="/images/wood.jpg" alt="Wood" width="100" height="75">
+            <div id="totalCounter6" class="bottom-right">Click image to upgrade</div>
+        </div>
+        <div class="column">
+            <br> <img id="wheat_field" src="/images/wheat.png" alt="Wheat" width="100" height="75">
+            <div id="totalCounter7" class="bottom-right">Click image to upgrade</div>
+        </div>
+
+    </div>
+</div>
+
+
+<h1> Capacity Upgrades </h1>
+<div class="row">
+    <div class="column">
+        <br> <img id="stone_upg" src="/images/stone.png" alt="Stone" width="100" height="75">
+        <div id="totalCounter3" class="bottom-right">Click image to upgrade</div>
+    </div>
+    <div class="column">
+        <br> <img id="wood_upg" src="/images/wood.jpg" alt="Wood" width="100" height="75">
+        <div id="totalCounter4" class="bottom-right">Click image to upgrade</div>
+    </div>
+    <div class="column">
+        <br> <img id="wheat_upg" src="/images/wheat.png" alt="Wheat" width="100" height="75">
+        <div id="totalCounter9" class="bottom-right">Click image to upgrade</div>
+    </div>
+</div>
+
+<h1> Worker Efficiency Upgrade </h1>
+    <div class="column">
+        <br> <img id="speed_upg" src="/images/speed.png" alt="Speed" width="100" height="75">
+        <div id="totalCounter10" class="bottom-right">Click image to upgrade</div>
+    </div>
+    <div class="column">
+        <br> <img id="pop_update" src="/images/population.png" alt="Population" width="100" height="75">
+        <div id="totalCounter11" class="bottom-right"></div>
+    </div>
+
+</div>
+
+
+<script>
+    var catpic = document.getElementById("catpic");
+    var catpic2 = document.getElementById("catpic2");
+    var stone_upg = document.getElementById("stone_upg");
+    var wood_upg = document.getElementById("wood_upg");
+    var stone_mine = document.getElementById("stone_mine");
+    var wood_camp = document.getElementById("wood_camp");
+    var wheat_field = document.getElementById("wheat_field");
+    var wheat_click = document.getElementById("wheat_click");
+    var wheat_upg = document.getElementById("wheat_upg");
+    var speed_upg = document.getElementById("speed_upg");
+
+    var total = document.getElementById("totalCounter");
+    var total2 = document.getElementById("totalCounter2");
+    var total3 = document.getElementById("totalCounter3");
+    var total4 = document.getElementById("totalCounter4");
+    var total5 = document.getElementById("totalCounter5");
+    var total6 = document.getElementById("totalCounter6");
+    var total7 = document.getElementById("totalCounter7");
+    var total8 = document.getElementById("totalCounter8");
+    var total9 = document.getElementById("totalCounter9");
+    var total10 = document.getElementById("totalCounter10");
+    var total11 = document.getElementById("totalCounter11");
+
+    catpic.onclick = function(e){
+        fetch("/stoneclick", {method:"POST"})
+            .then( response => response.text() )
+            .then( text => total.textContent = text )
+        ;
+    }
+
+    catpic2.onclick = function(e){
+        fetch("/woodclick", {method:"POST"})
+            .then( response2 => response2.text() )
+            .then( text2 => total2.textContent = text2 )
+        ;
+    }
+
+    wheat_click.onclick = function(e){
+        fetch("/wheatclick", {method:"POST"})
+            .then( response8 => response8.text() )
+            .then( text8 => total8.textContent = text8 )
+        ;
+    }
+
+    stone_upg.onclick = function(e){
+        fetch("/stonemulti", {method:"POST"})
+            .then( response3 => response3.text() )
+            .then( text3 => total3.textContent = text3 )
+        ;
+    }
+    wood_upg.onclick = function(e){
+        fetch("/woodmulti", {method:"POST"})
+            .then( response4 => response4.text() )
+            .then( text4 => total4.textContent = text4 )
+        ;
+    }
+    wheat_upg.onclick = function(e){
+        fetch("/wheatmulti", {method:"POST"})
+            .then( response9 => response9.text() )
+            .then( text9 => total9.textContent = text9 )
+        ;
+    }
+
+    speed_upg.onclick = function(e){
+        fetch("/speedupg", {method:"POST"})
+            .then( response10 => response10.text() )
+            .then( text10 => total10.textContent = text10 )
+        ;
+    }
+
+    stone_mine.onclick = function(e){
+        fetch("/stonemine", {method:"POST"})
+            .then( response5 => response5.text() )
+            .then( text5 => total5.textContent = text5 )
+        ;
+    }
+    wood_camp.onclick = function(e){
+        fetch("/woodcamp", {method:"POST"})
+            .then( response6 => response6.text() )
+            .then( text6 => total6.textContent = text6 )
+        ;
+    }
+    wheat_field.onclick = function(e){
+        fetch("/wheatfield", {method:"POST"})
+            .then( response7 => response7.text() )
+            .then( text7 => total7.textContent = text7 )
+        ;
+    }
+
+    setInterval(update_stone,100);
+    function update_stone(){
+        fetch("/stoneclick", {method:"GET"})
+            .then( response => response.text() )
+            .then( text => total.textContent = text )
+        ;
+    }
+
+
+    setInterval(update_wood,100);
+    function update_wood(){
+        fetch("/woodclick", {method:"GET"})
+            .then( response2 => response2.text() )
+            .then( text2 => total2.textContent = text2 )
+        ;
+    }
+
+    setInterval(update_wheat,100);
+    function update_wheat(){
+        fetch("/wheatclick", {method:"GET"})
+            .then( response8 => response8.text() )
+            .then( text8 => total8.textContent = text8 )
+        ;
+    }
+
+    setInterval(update_pop,100);
+    function update_pop(){
+        fetch("/popupdate", {method:"GET"})
+            .then( response11 => response11.text() )
+            .then( text11 => total11.textContent = text11 )
+        ;
+    }
+
+    // optional
+    total.onload = function (e) {
+        fetch("/stoneclick", {method:"GET"})
+            .then( response => response.text() )
+            .then( text => total.textContent = text )
+        ;
+    }
+    // optional
+    total2.onload = function (e) {
+        fetch("/woodclick", {method:"GET"})
+            .then( response2 => response2.text() )
+            .then( text2 => total2.textContent = text2 )
+        ;
+    }
+
+    total8.onload = function (e) {
+        fetch("/wheatclick", {method:"GET"})
+            .then( response8 => response8.text() )
+            .then( text8 => total8.textContent = text8 )
+        ;
+    }
+
+    total11.onload = function (e) {
+        fetch("/popupdate", {method:"GET"})
+            .then( response11 => response11.text() )
+            .then( text11 => total11.textContent = text11 )
+        ;
+    }
+</script>

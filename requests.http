@@ -1,0 +1,37 @@
+### Post "Hello!"
+POST http://localhost:8080/
+Content-Type: application/json
+
+{
+  "text": "Stone",
+  "counter": 0
+}
+
+### Post "Bonjour!"
+
+POST http://localhost:8080/
+Content-Type: application/json
+
+{
+  "text": "Wood",
+  "counter": 0
+}
+
+### Post "Privet!"
+
+POST http://localhost:8080/
+Content-Type: application/json
+
+{
+  "id": 1,
+  "stone_counter": 0,
+  "stone_multiplier":1 ,
+  "wood_counter": 0,
+  "wood_multiplier": 1
+}
+
+### Get all the messages
+GET http://localhost:8080/
+
+### Get the message by its id
+GET http://localhost:8080/58bb3f7c-8af9-42b8-b2b0-df50fe04bf97
